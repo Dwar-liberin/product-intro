@@ -2,6 +2,8 @@ import { videoLoader } from "https://cdn.jsdelivr.net/gh/aadarshbabu/lib/videoLo
 import { loadGLTF } from "https://cdn.jsdelivr.net/gh/aadarshbabu/lib/loader.js";
 import * as THREE from "three";
 import { MindARThree } from "mindar-image-three";
+import { FontLoader } from "https://unpkg.com/three@0.160.0/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "https://unpkg.com/three@0.160.0/examples/jsm/geometries/TextGeometry.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   async function start() {
@@ -15,82 +17,108 @@ document.addEventListener("DOMContentLoaded", () => {
     const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
     scene.add(light);
 
-    const target_image32c5af_iconGeometry = new THREE.PlaneGeometry(
-      1,
-      0.49850746268656715
-    );
-    const target_image32c5af_texture = textureLoader.load("assets/about.jpg");
-    const target_image32c5af_image = new THREE.MeshBasicMaterial({
-      map: target_image32c5af_texture,
-    });
-    const target_image32c5af = new THREE.Mesh(
-      target_image32c5af_iconGeometry,
-      target_image32c5af_image
-    );
-    target_image32c5af.scale.set(1, 1, 1);
-    target_image32c5af.position.set(0, 0, 0);
-    target_image32c5af.rotation.set(-0.0007963267948964958, 0, 0);
+    const loadFont = () => {
+      return new Promise((resolve, reject) => {
+        const loader = new FontLoader();
 
-    const [video_asset_898d53, video_asset_898d53_video] = await videoLoader({
-      path: "assets/Savanto in Savantide.mp4",
-      ratio: 1,
-    });
+        loader.load(
+          "https://cdn.jsdelivr.net/gh/mrdoob/three.js/examples/fonts/helvetiker_regular.typeface.json",
+          (font) => {
+            resolve(font); // Resolve the promise with the loaded font
+          },
+          undefined, // Progress callback (optional)
+          (error) => {
+            reject(error); // Reject the promise with the error
+          }
+        );
+      });
+    };
+
+    const font = await loadFont();
+
+    const [video_asset_f09cfb89a24, video_asset_f09cfb89a24_video] =
+      await videoLoader({
+        path: "assets/ad2.mp4",
+        ratio: 1,
+      });
+
+    video_asset_f09cfb89a24.position.set(0, 0, 0.1);
 
     const isIOS = navigator.appVersion.indexOf("Mac") != -1 ? true : false;
 
-    video_asset_898d53_video.muted = isIOS;
+    video_asset_f09cfb89a24_video.muted = isIOS;
 
-    video_asset_898d53.position.set(0, 0, 0.1);
+    video_asset_f09cfb89a24.scale.set(1, 2.1, 1);
 
-    video_asset_898d53.scale.set(1, 0.5, 1);
+    video_asset_f09cfb89a24.rotation.set(-0.0007963267948964958, 0, 0);
 
-    video_asset_898d53.rotation.set(-0.0007963267948964958, 0, 0);
-
-    const logo_bc715221_f38b_iconGeometry = new THREE.CircleGeometry(0.5);
-    const logo_bc715221_f38b_texture = textureLoader.load(
-      "assets/circle-vk-sm_112.png"
+    const target_imagee2ad2a0d30c_iconGeometry = new THREE.PlaneGeometry(
+      1,
+      2.211453744493392
     );
-    const logo_bc715221_f38b_image = new THREE.MeshBasicMaterial({
-      map: logo_bc715221_f38b_texture,
+    const target_imagee2ad2a0d30c_texture =
+      textureLoader.load("assets/target.jpg");
+    const target_imagee2ad2a0d30c_image = new THREE.MeshBasicMaterial({
+      map: target_imagee2ad2a0d30c_texture,
     });
-    const logo_bc715221_f38b = new THREE.Mesh(
-      logo_bc715221_f38b_iconGeometry,
-      logo_bc715221_f38b_image
+    const target_imagee2ad2a0d30c = new THREE.Mesh(
+      target_imagee2ad2a0d30c_iconGeometry,
+      target_imagee2ad2a0d30c_image
     );
-    logo_bc715221_f38b.scale.set(0.1, 0.1, 1);
-    logo_bc715221_f38b.position.set(-0.4, -0.4, 0);
-    logo_bc715221_f38b.rotation.set(-0.0007963267948964958, 0, 0);
-    logo_bc715221_f38b.userData.clickable = true;
-    const logo_5cb2669a_2d1a_iconGeometry = new THREE.CircleGeometry(0.5);
-    const logo_5cb2669a_2d1a_texture = textureLoader.load(
+    target_imagee2ad2a0d30c.scale.set(1, 1, 1);
+    target_imagee2ad2a0d30c.position.set(0, 0, 0);
+    target_imagee2ad2a0d30c.rotation.set(-0.0007963267948964958, 0, 0);
+
+    const logo_69d86362_bd2469d86_iconGeometry = new THREE.CircleGeometry(0.5);
+    const logo_69d86362_bd2469d86_texture = textureLoader.load(
       "assets/circle-wa-sm_113.png"
     );
-    const logo_5cb2669a_2d1a_image = new THREE.MeshBasicMaterial({
-      map: logo_5cb2669a_2d1a_texture,
+    const logo_69d86362_bd2469d86_image = new THREE.MeshBasicMaterial({
+      map: logo_69d86362_bd2469d86_texture,
     });
-    const logo_5cb2669a_2d1a = new THREE.Mesh(
-      logo_5cb2669a_2d1a_iconGeometry,
-      logo_5cb2669a_2d1a_image
+    const logo_69d86362_bd2469d86 = new THREE.Mesh(
+      logo_69d86362_bd2469d86_iconGeometry,
+      logo_69d86362_bd2469d86_image
     );
-    logo_5cb2669a_2d1a.scale.set(0.1, 0.1, 1);
-    logo_5cb2669a_2d1a.position.set(0, -0.4, 0);
-    logo_5cb2669a_2d1a.rotation.set(-0.0007963267948964958, 0, 0);
-    logo_5cb2669a_2d1a.userData.clickable = true;
-    const logo_0d289e59_7576_iconGeometry = new THREE.CircleGeometry(0.5);
-    const logo_0d289e59_7576_texture = textureLoader.load(
+    logo_69d86362_bd2469d86.scale.set(0.4, 0.4, 1);
+    logo_69d86362_bd2469d86.position.set(-0.2, -1.5, 0.1);
+    logo_69d86362_bd2469d86.rotation.set(-0.0007963267948964958, 0, 0);
+    logo_69d86362_bd2469d86.userData.clickable = true;
+
+    const text_b99b9b31_90dab99b9_textGeo = new TextGeometry("Contact Us", {
+      font: font,
+      size: 0.1,
+      height: 0,
+    });
+
+    const text_b99b9b31_90dab99b9_textMaterial = new THREE.MeshBasicMaterial({
+      color: 0x073158,
+    });
+
+    const text_b99b9b31_90dab99b9 = new THREE.Mesh(
+      text_b99b9b31_90dab99b9_textGeo,
+      text_b99b9b31_90dab99b9_textMaterial
+    );
+
+    text_b99b9b31_90dab99b9.position.set(-0.3, -1.2, 0.1);
+    text_b99b9b31_90dab99b9.scale.set(0.8, 0.8, 0.5);
+    text_b99b9b31_90dab99b9.rotation.set(-0.0007963267948964958, 0, 0);
+
+    const logo_fd2ddb36_7d5dfd2dd_iconGeometry = new THREE.CircleGeometry(0.5);
+    const logo_fd2ddb36_7d5dfd2dd_texture = textureLoader.load(
       "assets/circle-web-sm_114.png"
     );
-    const logo_0d289e59_7576_image = new THREE.MeshBasicMaterial({
-      map: logo_0d289e59_7576_texture,
+    const logo_fd2ddb36_7d5dfd2dd_image = new THREE.MeshBasicMaterial({
+      map: logo_fd2ddb36_7d5dfd2dd_texture,
     });
-    const logo_0d289e59_7576 = new THREE.Mesh(
-      logo_0d289e59_7576_iconGeometry,
-      logo_0d289e59_7576_image
+    const logo_fd2ddb36_7d5dfd2dd = new THREE.Mesh(
+      logo_fd2ddb36_7d5dfd2dd_iconGeometry,
+      logo_fd2ddb36_7d5dfd2dd_image
     );
-    logo_0d289e59_7576.scale.set(0.1, 0.1, 1);
-    logo_0d289e59_7576.position.set(0.4, -0.4, 0);
-    logo_0d289e59_7576.rotation.set(-0.0007963267948964958, 0, 0);
-    logo_0d289e59_7576.userData.clickable = true;
+    logo_fd2ddb36_7d5dfd2dd.scale.set(0.4, 0.4, 1);
+    logo_fd2ddb36_7d5dfd2dd.position.set(0.3, -1.5, 0.1);
+    logo_fd2ddb36_7d5dfd2dd.rotation.set(-0.0007963267948964958, 0, 0);
+    logo_fd2ddb36_7d5dfd2dd.userData.clickable = true;
 
     document.body.addEventListener("click", (e) => {
       const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -108,34 +136,29 @@ document.addEventListener("DOMContentLoaded", () => {
           o = o.parent;
         }
 
-        if (o.userData.clickable && o === logo_bc715221_f38b) {
-          window.location.href = "https://vk.com/naumag";
+        if (o.userData.clickable && o === logo_69d86362_bd2469d86) {
+          window.location.href = "https://wa.me/8100556677/?text=hi";
         }
 
-        if (o.userData.clickable && o === logo_5cb2669a_2d1a) {
-          window.location.href =
-            "https://api.whatsapp.com/send/?phone=79175704772";
-        }
-
-        if (o.userData.clickable && o === logo_0d289e59_7576) {
-          window.location.href = "https://nau-ra.com";
+        if (o.userData.clickable && o === logo_fd2ddb36_7d5dfd2dd) {
+          window.location.href = "https://apnaghar.shyamsteel.com/";
         }
       }
     });
 
     const anchor = mindThree.addAnchor(0);
-    anchor.group.add(target_image32c5af);
-    anchor.group.add(video_asset_898d53);
-    anchor.group.add(logo_bc715221_f38b);
-    anchor.group.add(logo_5cb2669a_2d1a);
-    anchor.group.add(logo_0d289e59_7576);
+    anchor.group.add(video_asset_f09cfb89a24);
+    // anchor.group.add(target_imagee2ad2a0d30c)
+    anchor.group.add(logo_69d86362_bd2469d86);
+    anchor.group.add(text_b99b9b31_90dab99b9);
+    anchor.group.add(logo_fd2ddb36_7d5dfd2dd);
 
     anchor.onTargetFound = () => {
-      video_asset_898d53_video.play();
+      video_asset_f09cfb89a24_video.play();
     };
 
     anchor.onTargetLost = () => {
-      video_asset_898d53_video.pause();
+      video_asset_f09cfb89a24_video.pause();
     };
 
     await mindThree.start();
