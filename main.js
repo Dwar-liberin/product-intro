@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindThree = new MindARThree({
       container: document.body,
       imageTargetSrc: "assets/target.mind",
+      uiLoading: "#scanning-overlay",
     });
 
     const { renderer, scene, camera } = mindThree;
@@ -135,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
         while (o.parent && !o.userData?.clickable) {
           o = o.parent;
         }
+
+         if(o.userData.clickable) window.showLoadingScreen();
 
         if (o.userData.clickable && o === logo_69d86362_bd2469d86) {
           window.location.href = "https://wa.me/8100556677/?text=hi";
